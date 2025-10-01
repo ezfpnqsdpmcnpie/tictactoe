@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useAppDispatch, useAppSelector } from "./store/hooks"
+import { StartPopup } from "./components/StartPopup";
+import { EndPopup } from "./components/EndPopup";
+import { Button } from "./components/Button";
+import { resetGame, retryGame } from "./store/slice/data/data";
+import { GamePanel } from "./components/GamePanel";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const dispatch = useAppDispatch();
+  
+  const isStart: boolean = useAppSelector(state => state.data.symbol) == null;
+  const isEnd: boolean = false;
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="w-screen h-screen flex flex-col items-center">
+        <p className="text-[40px] underline font-bold p-10">Tic Tac Toe</p>
+        <div className="flex w-full h-full">
+          <div className="w-2/3">
+            <GamePanel/>
+          </div>
+          <div className="flex flex-col h-full items-center justify-center gap-25 w-1/3">
+            <Button name={"RESET"} action={() => dispatch(retryGame())}/>
+            <Button name={"LEAVE"} action={() => dispatch(resetGame())}/>
+          </div>
+        </div>
+        {(isStart || isEnd) &&
+          <div className="fixed inset-0 flex justify-center items-center backdrop-blur-md">
+            {isStart && <StartPopup/>}
+            {isEnd && <EndPopup/>}
+          </div>
+        }
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
