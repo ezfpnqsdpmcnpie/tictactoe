@@ -2,14 +2,20 @@ import { useAppDispatch, useAppSelector } from "./store/hooks"
 import { StartPopup } from "./components/StartPopup";
 import { EndPopup } from "./components/EndPopup";
 import { Button } from "./components/Button";
-import { resetGame, retryGame } from "./store/slice/data/data";
+import { resetGame, retryGame, setWinningCombinations } from "./store/slice/data/data";
 import { GamePanel } from "./components/GamePanel";
+import { useEffect } from "react";
 
 function App() {
   const dispatch = useAppDispatch();
   
-  const isStart: boolean = useAppSelector(state => state.data.symbol) == null;
-  const isEnd: boolean = false;
+  const isStart: boolean = useAppSelector(state => state.data.symbol) === null;
+  const isEnd: boolean = useAppSelector(state => state.data.winner) !== null;
+
+  useEffect(() => {
+    dispatch(setWinningCombinations());
+  }, []);
+
   return (
     <>
       <div className="w-screen h-screen flex flex-col items-center">
