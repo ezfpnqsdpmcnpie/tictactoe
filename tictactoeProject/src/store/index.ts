@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import dataReducer from './slice/data/data'
+import gameDataReducer from './slice/gameData/gameData'
+import winningDataReducer from './slice/winningData/winningData'
 
 export const store = configureStore({
   reducer: {
-    data: dataReducer
+    gameData: gameDataReducer,
+    winningData: winningDataReducer
   },
 })
 

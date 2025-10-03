@@ -1,16 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { dataInterface } from "./data.type";
-import { GAME_SIZE, SYMBOLS } from "../../../constants";
+import { GAME_SIZE } from "../../../constants";
+import type { winningDataInterface } from "./winningData.type";
 
-const initialState: dataInterface = {
+const initialState: winningDataInterface = {
     winningCombinations : [],
-    symbol: null,
-    gameData: Array(Math.pow(GAME_SIZE, 2)).fill(""),
     winner: null,
 }
 
-export const dataSlice = createSlice({
-    name:'gameData',
+export const winningDataslice = createSlice({
+    name:'winningData',
     initialState: initialState,
     reducers:{
         setWinningCombinations: (state) => {
@@ -70,30 +68,12 @@ export const dataSlice = createSlice({
                 state.winningCombinations.push(combination);
             }
         },
-        setSymbol: (state, action) => {
-            state.symbol = action.payload.symbol;
-        },
-        setCell: (state, action) => {
-            state.gameData[action.payload.index] = state.symbol as string;
-        },
-        opponentTurn: (state) => {
-            const emptyCells: number[] = state.gameData
-                                .map((value, index) => (value === "" ? index : null))
-                                .filter(index => index !== null);
-            
-            const randomIndex: number = Math.floor(Math.random() * emptyCells.length);
-
-            state.gameData[emptyCells[randomIndex]] = SYMBOLS.find(symbol => symbol !== state.symbol) as string;
-        },
         setWinner: (state, action) => {
             state.winner = action.payload.name
-        },
-        retryGame: (state) => {
-            state.gameData = Array(Math.pow(GAME_SIZE, 2)).fill("");
         },
         resetGame: () => initialState,
     },
 })
 
-export const {setWinningCombinations, setSymbol, setCell, opponentTurn, setWinner, retryGame, resetGame} = dataSlice.actions
-export default dataSlice.reducer
+export const {setWinningCombinations, setWinner, resetGame} = winningDataslice.actions
+export default winningDataslice.reducer

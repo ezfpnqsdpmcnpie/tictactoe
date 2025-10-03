@@ -2,17 +2,15 @@ import { useAppSelector } from "../store/hooks";
 
 const useGameStatus: () => string | null = () => {
 
-    const gameData = useAppSelector(state => state.data.gameData);
-    const winningCombinations = useAppSelector(state => state.data.winningCombinations);
+    const boardData = useAppSelector(state => state.gameData.boardData);
+    const winningCombinations = useAppSelector(state => state.winningData.winningCombinations);
 
-    const hasEmptyCells = gameData.some(cell => cell === "");
+    const hasEmptyCells = boardData.some(cell => cell === "");
 
     for (const combination of winningCombinations) {
-        const firstCell: string = gameData[combination[0]];
-
+        const firstCell: string = boardData[combination[0]];
         if(firstCell !== ""){
-            const allSame = combination.every(index => gameData[index] === firstCell);
-
+            const allSame = combination.every(index => boardData[index] === firstCell);
             if(allSame){
                 return firstCell;
             }

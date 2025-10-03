@@ -1,6 +1,6 @@
 import { SYMBOLS } from "../../constants";
 import { useAppDispatch } from "../../store/hooks"
-import { setSymbol } from "../../store/slice/data/data";
+import { setSymbol } from "../../store/slice/gameData/gameData";
 import { Button } from "../Button";
 
 export const StartPopup = () => {
