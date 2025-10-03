@@ -38,15 +38,20 @@ VITE_HOST = Application host
 
 ## Usage
 
-1. Start the development server:
+Start the development server:
+
 ```bash
-npm start
+npm run dev
 ```
 
-2. Build the project for production:
-```bash
-npm run build
+Once the server is running, the application will be accessible in your browser at the host and port specified in your **.env** file.
+
+For example, if your .env contains:
+```env
+VITE_HOST=localhost
+VITE_PORT=5173
 ```
+You can open the app at: http://localhost:5173
 
 ## Project Structure
 
