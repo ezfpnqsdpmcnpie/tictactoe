@@ -15,7 +15,7 @@ export const BoardPanel = () => {
     const gameStatus: string | null = useGameStatus();
 
     useEffect(() => {
-        const winner = gameStatus;
+        const winner: string | null = gameStatus;
         if(winner === null && isOpponentTurn){
             dispatch(opponentTurn());
         }
@@ -27,10 +27,10 @@ export const BoardPanel = () => {
     return (
         <>
             <div className="flex flex-col h-full w-full justify-around p-5">
-                {Array.from({ length: GAME_SIZE }).map((_, iRow) => (
+                {Array.from({ length: GAME_SIZE }).map((_, iRow: number) => (
                     <div key={iRow} className="flex h-full justify-around">
-                        {Array.from({ length: GAME_SIZE}).map((_, iCol) => {
-                            const iCell = iRow * GAME_SIZE + iCol;
+                        {Array.from({ length: GAME_SIZE}).map((_, iCol: number) => {
+                            const iCell: number = iRow * GAME_SIZE + iCol;
                             return <p
                                     key={iCell}
                                     className={`w-full border border-[var(--text)] font-bold bg-white flex items-center justify-center cursor-pointer`}
