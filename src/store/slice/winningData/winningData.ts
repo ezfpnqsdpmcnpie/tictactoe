@@ -85,7 +85,9 @@ export const winningDataslice = createSlice({
         /**
          * Reset all data to restart the game
          */
-        resetGame: () => initialState,
+        resetGame: (state) => {
+            state.winner = null
+        }
     },
 })
 

@@ -1,6 +1,7 @@
 import type { JSX } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
-import { resetGame } from "../../store/slice/gameData/gameData";
+import { resetGame as resetBoardData } from "../../store/slice/gameData/gameData";
+import { resetGame as resetWinningData } from "../../store/slice/winningData/winningData";
 import { Button } from "../Button"
 
 /**
@@ -17,7 +18,10 @@ export const EndPopup = (): JSX.Element => {
         <>
             <div className="flex flex-col items-center bg-[var(--background)] text-2xl py-7 px-15 border border-[var(--secondary-background)] rounded-xl shadow-[0_0_10px_rgba(0,0,0,0.5)]">
                 <p className="text-2xl mb-10">{winner === "draw" ? "Match null" : "Vous avez " + (winner === selectedSymbol ? "gagné" : "perdu") + " !"}</p>
-                <Button name={'RESTART'} action={() => dispatch(resetGame())} />
+                <Button name={'RESTART'} action={() => {
+                    dispatch(resetBoardData())
+                    dispatch(resetWinningData())
+                }}/>
             </div>
         </>
     )
