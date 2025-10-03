@@ -1,8 +1,14 @@
+import type { JSX } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks"
 import { resetGame } from "../../store/slice/gameData/gameData";
 import { Button } from "../Button"
 
-export const EndPopup = () => {
+/**
+ * Popup to inform the game status : draw or if the user win the game
+ * 
+ * @returns {JSX.Element} A popup element
+ */
+export const EndPopup = (): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const winner: string = useAppSelector(state => state.winningData.winner) as string;

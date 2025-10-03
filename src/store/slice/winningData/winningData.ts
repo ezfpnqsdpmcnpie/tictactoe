@@ -7,10 +7,17 @@ const initialState: winningDataInterface = {
     winner: null,
 }
 
+/**
+ * Redux slice who contains each game status data
+ */
+
 export const winningDataslice = createSlice({
     name:'winningData',
     initialState: initialState,
     reducers:{
+        /**
+         * Set all winning combinations with the defined game size
+         */
         setWinningCombinations: (state) => {
             /**
              * First diagonal
@@ -68,9 +75,16 @@ export const winningDataslice = createSlice({
                 state.winningCombinations.push(combination);
             }
         },
+        /**
+         * Define the name of the winner or whether it is a draw
+         * @param {string} payload.name - Draw if it is a draw, or the name of the winner
+         */
         setWinner: (state, action) => {
             state.winner = action.payload.name
         },
+        /**
+         * Reset all data to restart the game
+         */
         resetGame: () => initialState,
     },
 })

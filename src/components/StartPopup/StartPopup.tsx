@@ -1,9 +1,15 @@
+import type { JSX } from "react";
 import { SYMBOLS } from "../../constants";
 import { useAppDispatch } from "../../store/hooks"
 import { setSymbol } from "../../store/slice/gameData/gameData";
 import { Button } from "../Button";
 
-export const StartPopup = () => {
+/**
+ * Popup to choose the user symbol before starting the game
+ * 
+ * @returns {JSX.Element} A popup element
+ */
+export const StartPopup = (): JSX.Element => {
     const dispatch = useAppDispatch();
 
     return (

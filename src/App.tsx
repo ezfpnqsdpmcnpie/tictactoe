@@ -5,10 +5,14 @@ import { Button } from "./components/Button";
 import { resetGame as resetBoardData, retryGame } from "./store/slice/gameData/gameData";
 import { resetGame as resetWinningData } from "./store/slice/winningData/winningData";
 import { BoardPanel } from "./components/BoardPanel";
-import { useEffect } from "react";
+import { useEffect, type JSX } from "react";
 import { setWinningCombinations } from "./store/slice/winningData/winningData";
 
-function App() {
+/**
+ * The app view
+ * @returns {JSX.Element} The app element
+ */
+function App(): JSX.Element {
   const dispatch = useAppDispatch();
   
   const isStart: boolean = useAppSelector(state => state.gameData.symbol) === null;

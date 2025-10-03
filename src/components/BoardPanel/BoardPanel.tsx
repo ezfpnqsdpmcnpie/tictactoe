@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, type JSX } from "react";
 import { GAME_SIZE } from "../../constants"
 import useGameStatus from "../../hooks/useGameStatus";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { opponentTurn, setCell } from "../../store/slice/gameData/gameData";
 import { setWinner } from "../../store/slice/winningData/winningData";
 
-export const BoardPanel = () => {
+/**
+ * The tic tac toe board necessary to play the game, based on the defined game size
+ * @returns {JSX.Element} A tic tac toe board element
+ */
+export const BoardPanel = (): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const selectedSymbol: string = useAppSelector(state => state.gameData.symbol) as string;
@@ -14,6 +18,9 @@ export const BoardPanel = () => {
 
     const gameStatus: string | null = useGameStatus();
 
+    /**
+     * Check the game status after each board changes
+     */
     useEffect(() => {
         const winner: string | null = gameStatus;
         if(winner === null && isOpponentTurn){
