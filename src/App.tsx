@@ -32,7 +32,7 @@ function App(): JSX.Element {
           </div>
           <div className="flex flex-col h-full items-center justify-center gap-25 w-1/3">
             <Button name={"RESET"} action={() => dispatch(retryGame())}/>
-            <Button name={"LEAVE"} action={() => {
+            <Button name={"RESTART"} action={() => {
                 dispatch(resetBoardData())
                 dispatch(resetWinningData())
               }}/>
